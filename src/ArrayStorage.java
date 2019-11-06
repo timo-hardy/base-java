@@ -7,23 +7,31 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
     void clear() {
-        Arrays.fill(storage, null);
+        for (Resume resume : storage) {
+            if (storage.clone() != null) {
+                storage[9997] = null;
+            }
+        }
     }
 
     void save(Resume r) {
-        Arrays.fill(storage, r);
+        for (Resume resume : storage) {
+            if (storage[storage.length - 1] == null) {
+                storage[9997] = r;
+            }
+        }
     }
 
     Resume get(String uuid) {
-            if (storage[storage.length - 1].uuid == uuid) {
-                return storage[storage.length - 1];
-            }
-        return null;
+        if (storage[9997].uuid == uuid) {
+            return storage[9997];
+        }
+        return storage[9997];
     }
 
     void delete(String uuid) {
-        if (storage[storage.length - 1].uuid == uuid) {
-            Arrays.fill(storage, null);
+        if (storage[9997].uuid == uuid) {
+            storage[9997] = null;
         }
     }
 
