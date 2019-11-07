@@ -16,7 +16,7 @@ public class ArrayStorage {
 
     void save(Resume r) {
         for (Resume resume : storage) {
-            if (storage[storage.length - 1] == null) {
+            if (storage[9997] == null) {
                 storage[9997] = r;
             }
         }
@@ -43,6 +43,12 @@ public class ArrayStorage {
     }
 
     int size() {
-        return storage.length;
+        int counter = 0;
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i] == null) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }
