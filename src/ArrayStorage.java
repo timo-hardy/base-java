@@ -9,34 +9,33 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
     void clear() {
-        for (Resume resume : storage) {
-            if (storage != null) {
-                storage = null;
-            }
+        for (int i = 0; i < size; i++) {
+            storage[i] = null;
         }
     }
 
     void save(Resume r) {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i] == null) {
                 storage[i] = r;
+                size++;
             }
         }
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].uuid == uuid) {
                 return storage[i];
             }
         }
-        return new Resume();
+        return null;
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].uuid == uuid) {
-                storage[i] = null;
+                size--;
             }
         }
     }
@@ -45,10 +44,8 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        for (Resume resume : storage) {
-            if (storage.clone() != null) {
-                return storage;
-            }
+        for (int i = 0; i < size; i++) {
+            Resume resume = storage[i];
         }
         return Arrays.copyOf(storage, storage.length);
     }
