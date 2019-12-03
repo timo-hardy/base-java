@@ -12,9 +12,7 @@ public class ArrayStorage {
     private int size;
 
     public void clear() {
-        for (Resume resume : storage) {
-            resume = null;
-        }
+        Arrays.fill(storage, null);
         size = 0;
     }
 
@@ -27,13 +25,13 @@ public class ArrayStorage {
         }
     }
 
-    public void save(Resume r) {
-        if (getIndex(r.getUuid()) != -1) {
-            System.out.println("Resume with such" + r.getUuid() + " already exist");
+    public void save(Resume resume) {
+        if (getIndex(resume.getUuid()) != -1) {
+            System.out.println("Resume with such" + resume.getUuid() + " already exist");
         } else if (size == storage.length) {
             System.out.println("The resume array is overflow");
         } else {
-            storage[size] = r;
+            storage[size] = resume;
             size++;
         }
     }
@@ -71,7 +69,7 @@ public class ArrayStorage {
 
     private int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (uuid == storage[i].getUuid()) {
+            if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
