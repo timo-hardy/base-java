@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage implements Storage {
+public class ArrayStorage extends AbstractArrayStorage {
     private static final int STORAGE_LIMIT = 10000;
     private int size;
     private Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -32,22 +32,12 @@ public class ArrayStorage implements Storage {
     public void save(Resume resume) {
         if (getIndex(resume.getUuid()) != -1) {
             System.out.println("Resume with such" + resume.getUuid() + " already exist");
-        } else if (size == storage.length) {
+        } else if (size == STORAGE_LIMIT) {
             System.out.println("The resume array is overflow");
         } else {
             storage[size] = resume;
             size++;
         }
-    }
-
-    @Override
-    public Resume get(String uuid) {
-        int index = getIndex(uuid);
-        if (index == -1) {
-            System.out.println("Resume with such " + uuid + " not exist");
-            return null;
-        }
-        return storage[index];
     }
 
     @Override
@@ -70,12 +60,7 @@ public class ArrayStorage implements Storage {
         return Arrays.copyOfRange(storage, 0,size);
     }
 
-    @Override
-    public int size() {
-        return size;
-    }
-
-    private int getIndex(String uuid) {
+    protected int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].getUuid())) {
                 return i;
