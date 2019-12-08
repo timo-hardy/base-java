@@ -57,7 +57,7 @@ public class ArrayStorage extends AbstractArrayStorage {
      */
     @Override
     public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0,size);
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     protected int getIndex(String uuid) {
