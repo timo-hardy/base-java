@@ -5,29 +5,20 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
-    @Override
-    public void clear() {
 
+
+    @Override
+    protected void saveElement(Resume resume, int index) {
+        int insertInStorage = -index - 1;
+        System.arraycopy(storage, insertInStorage, storage, insertInStorage, size - insertInStorage);
     }
 
     @Override
-    public void update(Resume r) {
-
-    }
-
-    @Override
-    public void save(Resume resume) {
-
-    }
-
-    @Override
-    public void delete(String uuid) {
-
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return new Resume[0];
+    protected void removeElement(int index) {
+        int number = size - index - 1;
+        if (number > 0) {
+            System.arraycopy(storage, index + 1, storage, index, number);
+        }
     }
 
     @Override
