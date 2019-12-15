@@ -9,6 +9,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected void saveElement(Resume resume, int index) {
         int insertInStorage = -index - 1;
         System.arraycopy(storage, insertInStorage, storage, insertInStorage + 1, size - insertInStorage);
+        storage[insertInStorage] = resume;
     }
 
     @Override
