@@ -5,12 +5,10 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
-
-
     @Override
     protected void saveElement(Resume resume, int index) {
         int insertInStorage = -index - 1;
-        System.arraycopy(storage, insertInStorage, storage, insertInStorage, size - insertInStorage);
+        System.arraycopy(storage, insertInStorage, storage, insertInStorage + 1, size - insertInStorage);
     }
 
     @Override
