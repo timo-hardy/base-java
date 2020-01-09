@@ -3,6 +3,7 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 public class ArrayStorage extends AbstractArrayStorage {
+
     @Override
     protected void saveElement(Resume resume, int index) {
         storage[size] = resume;
