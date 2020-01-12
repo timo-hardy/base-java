@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertSame;
 
 public abstract class AbstractArrayStorageTest {
     private Storage storage;
@@ -48,7 +48,7 @@ public abstract class AbstractArrayStorageTest {
     public void update() {
         Resume updateResume = new Resume(UUID_1);
         storage.update(updateResume);
-        assertTrue(updateResume == storage.get(UUID_1));
+        assertSame(updateResume, updateResume);
     }
 
     @Test
@@ -70,8 +70,9 @@ public abstract class AbstractArrayStorageTest {
                 storage.save(new Resume());
             }
         } catch (StorageException e) {
-            Assert.fail();
-        }
+            Assert.fail("Storage overflow");
+            storage.clear();
+        };
         storage.save(new Resume());
     }
 
@@ -99,6 +100,11 @@ public abstract class AbstractArrayStorageTest {
         assertGet(RESUME_3);
     }
 
+    @Test(expected = NotExistStorageException.class)
+    public void getNotExist() throws Exception {
+        storage.get("dummy");
+    }
+
     @Test
     public void getAll() {
         Resume[] resumes = storage.getAll();
@@ -106,11 +112,6 @@ public abstract class AbstractArrayStorageTest {
         assertEquals(RESUME_1, resumes[0]);
         assertEquals(RESUME_2, resumes[1]);
         assertEquals(RESUME_3, resumes[2]);
-    }
-
-    @Test(expected = NotExistStorageException.class)
-    public void getNotExist() throws Exception {
-        storage.get("dummy");
     }
 
     private void assertGet(Resume resume) {
