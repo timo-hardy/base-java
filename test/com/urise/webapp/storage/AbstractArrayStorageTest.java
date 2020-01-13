@@ -51,6 +51,12 @@ public abstract class AbstractArrayStorageTest {
         assertSame(updateResume, updateResume);
     }
 
+    @Test(expected = NotExistStorageException.class)
+    public void updateNotExist() throws Exception {
+        storage.get("");
+    }
+
+
     @Test
     public void save() {
         storage.save(RESUME_4);
@@ -65,14 +71,17 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = StorageException.class)
     public void saveOverflow() throws Exception {
+        storage.clear();
         try {
             for (int i = 4; i < AbstractArrayStorage.STORAGE_LIMIT + 1; i++) {
                 storage.save(new Resume());
             }
         } catch (StorageException e) {
             Assert.fail("Storage overflow");
-            storage.clear();
-        };
+        }
+        storage.save(new Resume());
+        storage.save(new Resume());
+        storage.save(new Resume());
         storage.save(new Resume());
     }
 
