@@ -6,6 +6,7 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Array based storage for Resumes
@@ -66,7 +67,7 @@ public abstract class AbstractArrayStorage implements Storage {
      */
 
     @Override
-    public Resume get(String uuid) {
+    public List<Resume> get(String uuid) {
         int index = getIndex(uuid);
         if (index < 0) {
             throw new NotExistStorageException(uuid);
@@ -75,7 +76,7 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     @Override
-    public Resume[] getAll() {
+    public List<Resume> getAll() {
         return Arrays.copyOfRange(storage, 0, size);
     }
 

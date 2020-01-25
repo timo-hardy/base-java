@@ -2,6 +2,8 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.List;
+
 public interface Storage {
 
     void clear();
@@ -10,11 +12,11 @@ public interface Storage {
 
     void save(Resume resume);
 
-    Resume get(String uuid);
+    List<Resume> get(String uuid);
 
     void delete(String uuid);
 
-    Resume[] getAll();
+    List<Resume> getAll();
 
     int size();
 }
