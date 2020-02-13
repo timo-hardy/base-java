@@ -20,8 +20,12 @@ public class ListStorage implements Storage {
     }
 
     @Override
-    public void update(Resume r) {
-        for (Resume resume : resumes) {
+    public void update(Resume resume) {
+        int index = getIndex(resume.getUuid());
+        if (index < 0) {
+            throw new NotExistStorageException(resume.getUuid());
+        } else {
+            resumes.add(resume);
         }
     }
 
