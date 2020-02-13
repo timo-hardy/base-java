@@ -50,7 +50,7 @@ public class ListStorage implements Storage {
         if (index == null) {
             throw new NotExistStorageException(uuid);
         } else {
-            resumes.remove(index);
+            resumes.remove(uuid);
         }
     }
 
