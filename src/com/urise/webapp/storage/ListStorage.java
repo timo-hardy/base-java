@@ -17,8 +17,8 @@ public class ListStorage implements Storage {
 
     @Override
     public void update(Resume resume) {
-        int index = getIndex(resume.getUuid());
-        if (index < 0) {
+        Integer index = getIndex(resume.getUuid());
+        if (index == null) {
             throw new NotExistStorageException(resume.getUuid());
         } else {
             resumes.set(index, resume);
@@ -27,8 +27,8 @@ public class ListStorage implements Storage {
 
     @Override
     public void save(Resume resume) {
-        int index = getIndex(resume.getUuid());
-        if (index >= 0) {
+        Integer index = getIndex(resume.getUuid());
+        if (index != null) {
             throw new ExistStorageException(resume.getUuid());
         } else {
             resumes.add(resume);
@@ -38,7 +38,7 @@ public class ListStorage implements Storage {
     @Override
     public Resume get(String uuid) {
         Integer index = getIndex(uuid);
-        if (index < 0) {
+        if (index == null) {
             throw new NotExistStorageException(uuid);
         }
         return resumes.get(index);
@@ -46,8 +46,8 @@ public class ListStorage implements Storage {
 
     @Override
     public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
+        Integer index = getIndex(uuid);
+        if (index == null) {
             throw new NotExistStorageException(uuid);
         } else {
             resumes.remove(index);
