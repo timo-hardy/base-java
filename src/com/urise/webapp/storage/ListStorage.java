@@ -65,15 +65,11 @@ public class ListStorage implements Storage {
     }
 
     protected Integer getIndex(String uuid) {
-
         for (int i = 0; i < resumes.size(); i++) {
-            String listUuid = resumes.get(i).getUuid();
-            if (listUuid.equals(listUuid)) {
+            if (resumes.get(i).getUuid().equals(uuid)) {
                 return i;
-            } else if (listUuid == null) {
-                return null;
             }
         }
-        return -1;
+        return null;
     }
 }
