@@ -83,5 +83,5 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected abstract void removeElement(int index);
 
-    public abstract Integer getIndex(String uuid);
+    protected abstract int getIndex(String uuid);
 }

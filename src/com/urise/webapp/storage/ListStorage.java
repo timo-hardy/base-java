@@ -65,8 +65,7 @@ public class ListStorage implements Storage {
         return resumes.size();
     }
 
-    @Override
-    public Integer getIndex(String uuid) {
+    protected Integer getIndex(String uuid) {
         for (int i = 0; i < resumes.size(); i++) {
             if (resumes.get(i).getUuid().equals(uuid)) {
                 return i;
