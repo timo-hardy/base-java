@@ -45,12 +45,12 @@ public class ListStorage implements Storage {
     }
 
     @Override
-    public void delete(int uuid) {
-        Integer index = getIndex(String.valueOf(uuid));
+    public void delete(String uuid) {
+        Integer index = getIndex(uuid);
         if (index == null) {
-            throw new NotExistStorageException(String.valueOf(uuid));
+            throw new NotExistStorageException(uuid);
         } else {
-            resumes.remove(index);
+            resumes.remove(index.intValue());
         }
     }
 
